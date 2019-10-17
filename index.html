@@ -1,0 +1,82 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="author" content="Tatu Laras" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tatu Laras</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Abel|Inconsolata"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+
+  <body>
+    <div class="scene">
+      <div data-depth="0.4"><div id="code"></div></div>
+      <div data-depth="0.2"><span class="name">TATU LARAS</span></div>
+      <div data-depth="0.25" id="reveal"></div>
+    </div>
+
+    <script src="thirdparty/parallax.min.js"></script>
+    <script>
+      const scene = document.querySelector(".scene");
+      const parallaxInstance = new Parallax(scene);
+
+      const arrow = document.querySelector(".downarrow");
+
+      function checkSlide() {
+        console.log(arrow.scrollTop);
+      }
+
+      const name = document.querySelector(".name");
+
+      function debounce(func, wait = 20, immediate = true) {
+        var timeout;
+        return function() {
+          var context = this,
+            args = arguments;
+          var later = function() {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+          };
+          var callNow = immediate && !timeout;
+          clearTimeout(timeout);
+          timeout = setTimeout(later, wait);
+          if (callNow) func.apply(context, args);
+        };
+      }
+
+      function showText(target, message, index, interval) {
+        if (index < message.length) {
+          let letter = message[index++];
+          if (letter === "|") {
+            target.innerHTML += "<br>";
+          } else if (letter === ">") {
+            target.innerHTML += "&nbsp;&nbsp;";
+          } else {
+            target.innerHTML += letter;
+          }
+          setTimeout(function() {
+            showText(target, message, index, interval);
+          }, interval);
+        }
+      }
+
+      const message =
+        '{|>"about": "A finnish full stack web developer",||>"languages": [|>>"HTML", "CSS", "JavaScript",|>>"PHP", "Python"|>],||>"frameworks": [|>>"React", "Node", "Express"|>]|}';
+      const reveal = document.querySelector("#reveal");
+      showText(reveal, message, 0, 20);
+
+      setInterval(() => {
+        name.classList.add("glitch");
+      }, 4000);
+
+      name.addEventListener("animationend", () => {
+        name.classList.remove("glitch");
+      });
+
+      window.addEventListener("scroll", debounce(checkSlide));
+    </script>
+  </body>
+</html>

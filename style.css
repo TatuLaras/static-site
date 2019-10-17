@@ -1,0 +1,101 @@
+@font-face {
+  font-family: "Kiona";
+  src: url("resources/Kiona-Regular.woff");
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: black;
+}
+
+.scene {
+  display: flex;
+  height: 100vh;
+  background: black;
+  align-items: center;
+  justify-content: center;
+  background-image: url("resources/BG0.png");
+  background-size: cover;
+  overflow: hidden;
+  transition: all 0.5s;
+}
+
+.disappear{
+  opacity: 0;
+}
+
+#code {
+  opacity: 0.1;
+  background-image: url("resources/code2.jpg");
+  background-size: cover;
+  width: 120vw;
+  height: 130vh;
+  position: relative;
+  top: -10vh;
+}
+
+.name {
+  color: white;
+  font-size: 9em;
+  font-family: "Kiona", sans-serif;
+  position: relative;
+  left: 6vw;
+  top: 5vh;
+  transition: all 0.1s;
+}
+
+#reveal {
+  margin-top: 8.2em;
+  margin-left: 8vw;
+  height: 75vh;
+  width: 80vw;
+  color: white;
+  font-size: 2em;
+  font-family: "Inconsolata", monospace;
+}
+
+.glitch {
+  animation-duration: 0.5s;
+  animation-name: glitchAnim;
+}
+
+@keyframes glitchAnim {
+  0% {
+    font-style: italic;
+    color: blue;
+    text-shadow: 3px 3px 0 red;
+  }
+  50% {
+    opacity: 0.8;
+    text-shadow: -2px 0px 0px red;
+    text-decoration: line-through;
+    text-decoration-style: double;
+  }
+  55% {
+    text-decoration: none;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .name {
+    font-size: 5em;
+  }
+
+  #reveal {
+    margin-top: 3em;
+    font-size: 1em;
+  }
+}
+
+@media screen and (max-width: 900px){
+  #reveal {
+    margin-top: 35vh;
+  }
+}
+
+@media screen and (max-height: 740px){
+  #reveal{
+    font-size: 1.5em;
+  }
+}
