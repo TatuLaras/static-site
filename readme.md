@@ -1,3 +1,3 @@
-# An old personal website experiement.
+# An old personal website experiment.
 
 [Live version](https://tatularas.github.io/static-site/)
